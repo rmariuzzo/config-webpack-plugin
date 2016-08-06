@@ -35,6 +35,16 @@ class Utils {
         });
         return config;
     }
+
+    /**
+     * Sanitize a path to be resolved.
+     *
+     * @param  {string} path The path to be resolved.
+     * @return {string}      The resolved path.
+     */
+    sanitize(path) {
+        return path.replace(/\.js$/, '');
+    }
 }
 
 export default new Utils;

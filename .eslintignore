@@ -1,2 +1,2 @@
-# Ignore distribution files.
-/dist
+# Ignore library files.
+/lib

@@ -14,9 +14,9 @@ class ConfigPlugin {
      * @param  {String} path The path of the configuration file to manipulate.
      */
     constructor(path) {
-        console.log(`Using configuration file: ${instance.path}`);
-        this.path = path;
-        this.contents = utils.load(path);
+        this.path = utils.sanitize(path);
+        console.log(`Using configuration file: ${this.path}`);
+        this.contents = utils.load(this.path);
         this.contents = utils.override(this.contents);
     }
 

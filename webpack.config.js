@@ -7,11 +7,15 @@ var webpack = require('webpack');
 module.exports = {
     entry: {
         'config-webpack-plugin': './src/config-webpack-plugin',
-        'config-webpack-plugin.min': './src/config-webpack-plugin'
+        'config-webpack-plugin.min': './src/config-webpack-plugin',
+        'config-loader': './src/config-loader',
+        'config-loader.min': './src/config-loader'
     },
 
+    target: 'node',
+
     output: {
-        path: './dist',
+        path: './lib',
         filename: '[name].js',
     },
 
@@ -21,11 +25,6 @@ module.exports = {
             exclude: /node_modules/,
             loader: 'babel-loader'
         }]
-    },
-
-    externals: {
-        'fs': 'fs',
-        'path': 'path'
     },
 
     plugins: [

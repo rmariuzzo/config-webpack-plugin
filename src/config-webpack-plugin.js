@@ -14,8 +14,10 @@ class ConfigPlugin {
      * @param  {String} path The path of the configuration file to manipulate.
      */
     constructor(path) {
-        this._path = path;
-        this._contents = utils.load(path);
+        console.log(`Using configuration file: ${instance.path}`);
+        this.path = path;
+        this.contents = utils.load(path);
+        this.contents = utils.override(this.contents);
     }
 
     /**
@@ -34,7 +36,7 @@ class ConfigPlugin {
 
                 // Is this our configuration file?
                 if (data.resource.replace(/\.js$/, '') === instance.path) {
-                    console.log('Processsing configuration file: ' + instance.path);
+                    console.log(`Processsing configuration file: ${instance.path}`);
 
                     // Replace loaders with ours.
                     let loader = path.join(__dirname, 'config-loader.js');

@@ -20,6 +20,21 @@ class Utils {
             throw new Error(`Cannot load: ${path}. ${e.getMessage()}`);
         }
     }
+
+    /**
+     * Override configuration properties with environment variables.
+     *
+     * @param  {Object} config The configuration object.
+     * @return {Object}        The overriden configuration object.
+     */
+    override(config) {
+        Object.keys(process.env).forEach((key) => {
+            if (config.hasOwnProperty(key)) {
+                config[key] = process.env[key];
+            }
+        });
+        return config;
+    }
 }
 
 export default new Utils;

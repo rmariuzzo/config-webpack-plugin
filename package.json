@@ -1,0 +1,35 @@
+{
+  "name": "config-webpack-plugin",
+  "version": "1.0.0",
+  "description": "Merge configuration files with environment variables.",
+  "main": "dist/config-webpack-plugin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/webpack/bin/webpack.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmariuzzo/config-webpack-plugin.git"
+  },
+  "keywords": [
+    "webpack",
+    "config",
+    "configuration",
+    "plugin",
+    "env",
+    "environment"
+  ],
+  "author": "Rubens Mariuzzo <rubens@mariuzzo.com> (http://github.com/rmariuzzo)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rmariuzzo/config-webpack-plugin/issues"
+  },
+  "homepage": "https://github.com/rmariuzzo/config-webpack-plugin#readme",
+  "devDependencies": {
+    "babel-core": "^6.13.2",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.13.2",
+    "eslint": "^3.2.2",
+    "webpack": "^1.13.1"
+  }
+}

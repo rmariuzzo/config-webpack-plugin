@@ -11,10 +11,10 @@ class ConfigPlugin {
     /**
      * Construct a new ConfigPlugin instance.
      *
-     * @param  {String} path The path of the configuration file to manipulate.
+     * @param  {String} configPath The path of the configuration file to manipulate.
      */
-    constructor(path) {
-        this.path = utils.sanitize(path);
+    constructor(configPath) {
+        this.path = configPath;
         console.log(`Using configuration file: ${this.path}`);
         this.contents = utils.load(this.path);
         this.contents = utils.override(this.contents);
@@ -51,4 +51,4 @@ class ConfigPlugin {
     }
 }
 
-export default ConfigPlugin;
+module.exports = ConfigPlugin;

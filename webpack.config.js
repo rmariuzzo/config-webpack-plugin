@@ -17,13 +17,21 @@ module.exports = {
     output: {
         path: './lib',
         filename: '[name].js',
+        library: '[name]',
+        libraryTarget: 'commonjs2',
+        umdNamedDefine: true
     },
 
     module: {
+        exprContextCritical: false,
         loaders: [{
             test: /\.js$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
+        }, {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'eslint-loader'
         }]
     },
 

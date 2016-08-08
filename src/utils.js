@@ -1,5 +1,3 @@
-import fs from 'fs';
-
 /**
  * The Utils class.
  *
@@ -15,9 +13,10 @@ class Utils {
      */
     load(path) {
         try {
-            return fs.readFileSync(path, 'utf8');
+            path = this.sanitize(path);
+            return require(path);
         } catch (e) {
-            throw new Error(`Cannot load: ${path}. ${e.getMessage()}`);
+            throw new Error(`Cannot load: ${path}. ${e.message}`);
         }
     }
 

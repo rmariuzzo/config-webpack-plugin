@@ -28,7 +28,7 @@ module.exports = {
 
 *That's it!* The first and unique parameter is a string containing the relative path of the configuration file you want for `config-webpack-plugin` to intercept.
 
-### What is a configuration file.
+### What is a configuration file?
 
 Currently, `config-webpack-plugin` support a simple type of JS configuration file that export an object where key-value pairs represents key-value configurations:
 

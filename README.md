@@ -42,6 +42,8 @@ module.exports = {
 }
 ```
 
+ > 💁 `config-webpack-plugin` will replace any of these values if the key has a match in the **environment variables**.
+
 ## Development
 
 If you want to collaborate with the development of `config-webpack-plugin` you need to have installed NodeJS 6 and Gulp. Then follow these instructions to make my life easier:
@@ -59,5 +61,6 @@ If you want to collaborate with the development of `config-webpack-plugin` you n
  - [ ] Add CI. Please!
  - [ ] Support multiple file (`new ConfigPlugin(['./config.default.js', '.config.local.js'])`).
  - [ ] Support JSON file too ♥️, because they are prettiest for configuration.
+ - [ ] Add a static website using GitHub Pages (why not?).
 
  > 💁 Do you want to suggest a feature? [➕ Add a suggestion](https://github.com/rmariuzzo/config-webpack-plugin/issues/new).

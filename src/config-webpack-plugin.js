@@ -14,9 +14,20 @@ class ConfigPlugin {
      * @param  {String} configPath The path of the configuration file to manipulate.
      */
     constructor(configPath) {
-        this.path = configPath;
-        console.log(`Using configuration file: ${this.path}`);
-        this.contents = utils.load(this.path);
+        // Get absolute path of the configuration file.
+        let cwd = process.cwd();
+        this.path = path.join(cwd, configPath);
+
+        // Get the relative path of the configuration file.
+        // Needed for requiring the file from here.
+        let cwdRelative = path.relative(__dirname, cwd);
+        this.requirePath = path.join(cwdRelative, configPath);
+
+        console.log(`Using configuration file: ${configPath}`);
+
+        // Load configuration file and override properties
+        // whose matches with current environment variables.
+        this.contents = utils.load(this.requirePath);
         this.contents = utils.override(this.contents);
     }
 
@@ -36,7 +47,7 @@ class ConfigPlugin {
 
                 // Is this our configuration file?
                 if (data.resource.replace(/\.js$/, '') === instance.path) {
-                    console.log(`Processsing configuration file: ${instance.path}`);
+                    console.log(`Processing configuration file: ${instance.path}`);
 
                     // Replace loaders with ours.
                     let loader = path.join(__dirname, 'config-loader.js');

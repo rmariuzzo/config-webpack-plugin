@@ -1,6 +1,6 @@
 # config-webpack-plugin
 
-> 💫 Merge configuration files with environment variables.
+> 💫 Merge a configuration file with environment variables.
 
 # ⚒ This project is under development.
 

@@ -4,6 +4,8 @@
 
 ## How it works?
 
+![How it works?](https://github.com/rmariuzzo/config-webpack-plugin/raw/master/img/how-it-works.png)
+
 The `config-webpack-plugin` will **intercept a JS configuration file** during webpack's compilation time. The specified configuration file will be modified with any matching **environment variables**.
 
 ## Installation

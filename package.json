@@ -2,7 +2,7 @@
   "name": "config-webpack-plugin",
   "version": "1.0.0",
   "description": "Merge configuration files with environment variables.",
-  "main": "dist/config-webpack-plugin.js",
+  "main": "lib/config-webpack-plugin.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

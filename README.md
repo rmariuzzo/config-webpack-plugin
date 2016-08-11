@@ -42,7 +42,7 @@ module.exports = {
 }
 ```
 
- > 💁 `config-webpack-plugin` will replace any of these values if the key has a match in the **environment variables**.
+ > 💁 `config-webpack-plugin` will replace any of these configuration values if the key matches an **environment variable**.
 
 ## Development
 
@@ -57,10 +57,10 @@ If you want to collaborate with the development of `config-webpack-plugin` you n
 
 ### Roadmap
 
- - [ ] Add test. Please!
- - [ ] Add CI. Please!
- - [ ] Support multiple file (`new ConfigPlugin(['./config.default.js', '.config.local.js'])`).
+ - [ ] [Add test. Please!](https://github.com/rmariuzzo/config-webpack-plugin/issues/4)
+ - [ ] [Add CI. Please!](https://github.com/rmariuzzo/config-webpack-plugin/issues/5)
+ - [ ] [Support multiple file](https://github.com/rmariuzzo/config-webpack-plugin/issues/2) (`new ConfigPlugin(['./config.default.js', '.config.local.js'])`).
  - [ ] Support JSON file too ♥️, because they are prettiest for configuration.
- - [ ] Add a static website using GitHub Pages (why not?).
+ - [ ] [Add a static website using GitHub Pages](https://github.com/rmariuzzo/config-webpack-plugin/issues/3) (why not?).
 
  > 💁 Do you want to suggest a feature? [➕ Add a suggestion](https://github.com/rmariuzzo/config-webpack-plugin/issues/new).

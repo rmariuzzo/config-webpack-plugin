@@ -8,7 +8,7 @@
 
 The `config-webpack-plugin` will **intercept a JS configuration file** and will try to modify<sup>1</sup> it during webpack's compilation time. Any key matching an **environment variable** will be used instead.
 
-<sup>1</sup>: The contents of the configuration file used as source *will not be changed*.
+<sup>1</sup> The contents of the configuration file used as source *will not be changed*, but the bundle emitted by webpack will.
 
 ## Installation
 

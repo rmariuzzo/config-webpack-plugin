@@ -6,7 +6,9 @@
 
 ![How it works?](https://github.com/rmariuzzo/config-webpack-plugin/raw/master/img/how-it-works.png)
 
-The `config-webpack-plugin` will **intercept a JS configuration file** during webpack's compilation time. The specified configuration file will be modified with any matching **environment variables**.
+The `config-webpack-plugin` will **intercept a JS configuration file** and will try to modify<sup>1</sup> it during webpack's compilation time. Any key matching an **environment variable** will be used instead.
+
+<sup>1</sup>: The contents of the configuration file used as source *will not be changed*.
 
 ## Installation
 

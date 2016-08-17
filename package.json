@@ -4,7 +4,8 @@
   "description": "Merge configuration files with environment variables.",
   "main": "lib/config-webpack-plugin.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test",
+    "test:watch": "gulp test:watch"
   },
   "repository": {
     "type": "git",
@@ -27,12 +28,13 @@
   "devDependencies": {
     "babel-preset-es2015": "^6.13.2",
     "eslint": "^3.2.2",
-    "eslint-loader": "^1.5.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-eslint": "^3.0.1",
+    "gulp-jasmine": "^2.4.0",
     "gulp-rename": "^1.2.2",
     "gulp-rollup": "^2.3.0",
-    "gulp-uglify": "^2.0.0"
+    "gulp-uglify": "^2.0.0",
+    "webpack": "^1.13.1"
   }
 }

@@ -4,12 +4,15 @@ var babel = require('gulp-babel');
 var rename = require('gulp-rename');
 var uglify = require('gulp-uglify');
 var rollup = require('gulp-rollup');
+var jasmine = require('gulp-jasmine');
 
 var asset = {
     src: 'src/**/*.js',
     plugin: 'src/config-webpack-plugin.js',
     loader: 'src/config-loader.js',
-    lib: 'lib/'
+    lib: 'lib/',
+    test: 'test/**/*.js',
+    testSuite: 'test/suite.js'
 };
 
 gulp.task('default', () => {
@@ -34,4 +37,19 @@ gulp.task('watch', () => {
 
     return gulp
         .watch([asset.src], ['default']);
+});
+
+gulp.task('test', () => {
+
+    return gulp
+        .src([asset.testSuite])
+        .pipe(eslint())
+        .pipe(babel())
+        .pipe(jasmine());
+});
+
+gulp.task('test:watch', () => {
+
+    return gulp
+        .watch([asset.src, asset.test], ['test']);
 });

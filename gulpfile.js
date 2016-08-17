@@ -10,46 +10,59 @@ var asset = {
     src: 'src/**/*.js',
     plugin: 'src/config-webpack-plugin.js',
     loader: 'src/config-loader.js',
-    lib: 'lib/',
     test: 'test/**/*.js',
-    testSuite: 'test/suite.js'
+    testSuite: 'test/suite.js',
+    lib: 'lib/**/*.js'
 };
 
-gulp.task('default', () => {
+// Default task is to build everything.
+gulp.task('default', ['build']);
+
+gulp.task('build', ['lint:src'], () => {
+    /** @desc compile the source files into the final library. */
 
     return gulp
         .src([asset.src])
-        .pipe(eslint())
         .pipe(rollup({
             entry: [asset.plugin, asset.loader]
         }))
         .pipe(babel())
-        .pipe(gulp.dest(asset.lib))
+        .pipe(gulp.dest('lib/'))
         .pipe(rename({
             suffix: '.min'
         }))
         .pipe(uglify())
-        .pipe(gulp.dest(asset.lib));
+        .pipe(gulp.dest('lib/'));
 
 });
 
-gulp.task('watch', () => {
-
-    return gulp
-        .watch([asset.src], ['default']);
-});
-
-gulp.task('test', () => {
+gulp.task('test', ['lint:test', 'build'], () => {
+    /** @desc Run all the tests. */
 
     return gulp
         .src([asset.testSuite])
-        .pipe(eslint())
-        .pipe(babel())
         .pipe(jasmine());
 });
 
-gulp.task('test:watch', () => {
+gulp.task('watch', ['build'], () => {
+    /** @desc Watch source and test files then run all tests on changes. */
 
     return gulp
         .watch([asset.src, asset.test], ['test']);
+});
+
+gulp.task('lint:src', () => {
+    /** @desc Lint all source files. */
+
+    return gulp
+        .src([asset.src])
+        .pipe(eslint());
+});
+
+gulp.task('lint:test', () => {
+    /** @desc Lint all test files. */
+
+    return gulp
+        .src([asset.test])
+        .pipe(eslint());
 });

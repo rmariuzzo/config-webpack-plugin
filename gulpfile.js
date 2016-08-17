@@ -44,7 +44,7 @@ gulp.task('test', ['lint:test', 'build'], () => {
         .pipe(jasmine());
 });
 
-gulp.task('watch', ['build'], () => {
+gulp.task('watch', () => {
     /** @desc Watch source and test files then run all tests on changes. */
 
     return gulp

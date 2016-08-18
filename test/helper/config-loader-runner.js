@@ -1,10 +1,17 @@
 let ConfigLoader = require('../../lib/config-loader');
 
 module.exports = {
+
+    /**
+     * Run the config loader.
+     *
+     * @param  {Object} json The JSON object to pass to the config loader.
+     * @return {Object}      The result of the config loader.
+     */
     run: (json) => {
-        let query = [null];
+        let query = '';
         if (json) {
-            query.push(JSON.stringify(json));
+            query = '?' + JSON.stringify(json);
         }
         let fn = ConfigLoader.bind({
             query

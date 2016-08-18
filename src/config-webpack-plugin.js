@@ -14,16 +14,18 @@ class ConfigPlugin {
      * @param  {String} configPath The path of the configuration file to manipulate.
      */
     constructor(configPath) {
+        if (typeof configPath !== 'string') {
+            throw new Error('No configuration file. (specify one as a string)');
+        }
+
         // Get absolute path of the configuration file.
         let cwd = process.cwd();
-        this.path = path.join(cwd, configPath);
+        this.configPath = path.join(cwd, configPath);
 
         // Get the relative path of the configuration file.
         // Needed for requiring the file from here.
         let cwdRelative = path.relative(__dirname, cwd);
         this.requirePath = path.join(cwdRelative, configPath);
-
-        console.log(`Using configuration file: ${configPath}`);
 
         // Load configuration file and override properties
         // whose matches with current environment variables.
@@ -34,31 +36,34 @@ class ConfigPlugin {
     /**
      * Apply this plugin in the compiler build process.
      *
-     * @param  {Object} compiler The webpack compiler.
+     * @param {Object} compiler The webpack compiler.
      */
     apply(compiler) {
-
-        let instance = this;
-
-        // Intercept the configuration file and override configuration values
-        // with environment variables.
+        // Intercept all resolved modules and look for the specified configuration file.
         compiler.plugin('normal-module-factory', (nmf) => {
             nmf.plugin('after-resolve', (data, next) => {
+                let interceptedPath = data.resource;
 
                 // Is this our configuration file?
-                if (data.resource.replace(/\.js$/, '') === instance.path) {
-                    console.log(`Processing configuration file: ${instance.path}`);
-
-                    // Replace loaders with ours.
-                    let loader = path.join(__dirname, 'config-loader.js');
-                    let json = JSON.stringify(instance.contents);
-                    data.loaders = [`${loader}?${json}`];
+                if (interceptedPath === this.configPath) {
+                    this.intercept(data);
                 }
 
                 // Continue the normal resolution process.
                 return next(null, data);
             });
         });
+    }
+
+    /**
+     * Intercept a data chunk replacing all loaders by ours.
+     *
+     * @param {Object} data The data chunk.
+     */
+    intercept(data) {
+        let loader = path.join(__dirname, 'config-loader.js');
+        let json = JSON.stringify(this.contents);
+        data.loaders = [`${loader}?${json}`];
     }
 }
 

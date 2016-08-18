@@ -6,8 +6,8 @@
 module.exports = function () {
     // Get JSON string from query string.
     let query = '{}';
-    if (Array.isArray(this.query) && this.query.length > 1) {
-        query = this.query[1];
+    if (typeof this.query === 'string' && this.query.charAt(0) === '?') {
+        query = this.query.slice(1);
     }
 
     // Parse the JSON string and... stringify it back.

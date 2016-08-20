@@ -1,14 +1,6 @@
 # config-webpack-plugin
 
-> 💫 Merge a configuration file with environment variables.
-
-## How it works?
-
-![How it works?](https://github.com/rmariuzzo/config-webpack-plugin/raw/master/img/how-it-works.png)
-
-The `config-webpack-plugin` will **intercept a JS configuration file** and will try to modify<sup>1</sup> it during webpack's compilation time. Any key matching an **environment variable** will be used instead.
-
-<sup>1</sup> The contents of the configuration file used as source *will not be changed*, but the bundle emitted by webpack will.
+> 💫 Merge one or more configuration files together with environment variables too.
 
 ## Installation
 
@@ -16,25 +8,62 @@ The `config-webpack-plugin` will **intercept a JS configuration file** and will 
 npm install config-webpack-plugin --save-dev
 ```
 
+### How it works?
+
+**`webpack.config.js`:**
+```js
+const ConfigPlugin = require('config-webpack-plugin')
+
+module.exports = {
+    plugins: [
+        new ConfigPlugin([
+            './config.js',
+            './config.local.js'
+        ])
+    ]
+}
+```
+
+![How it works?](https://github.com/rmariuzzo/config-webpack-plugin/raw/master/img/how-it-works.png)
+
+ 1. The `config-webpack-plugin` will merge all specified configuration file contents from _right to left_, thus creating a _‘merged configuration’_.
+ 2. If the _‘merged configuration’_ contains a `key` matching a current environment variable then the related `value` will be replaced by the environment variable's value.
+ 3. Finally, the `config-webpack-plugin` will intercept the _‘main configuration’_ file (the first specified) during webpack's module resolution and will replace its source with the _‘merged configuration’_.
+
 ## Usage
+
+### Single configuration
 
 ```js
 const ConfigPlugin = require('config-webpack-plugin');
 
 module.exports = {
-    // ...
     plugins: [
-        new ConfigPlugin('./config')
+        new ConfigPlugin('./config.js')
     ]
-    // ...
 }
 ```
 
-*That's it!* The first and unique parameter is a string containing the relative path of the configuration file you want for `config-webpack-plugin` to intercept.
+### Multiple configuration
+
+```js
+const ConfigPlugin = require('config-webpack-plugin');
+
+module.exports = {
+    plugins: [
+        new ConfigPlugin([
+            './config.js',
+            './config.local.js'
+        ])
+    ]
+}
+```
+
+## FAQ
 
 ### What is a configuration file?
 
-Currently, `config-webpack-plugin` support a simple type of JS configuration file that export an object where key-value pairs represents key-value configurations:
+A module that export an object with key/value pairs that looks like:
 
 ```js
 module.exports = {
@@ -44,7 +73,9 @@ module.exports = {
 }
 ```
 
- > 💁 `config-webpack-plugin` will replace any of these configuration values if the key matches an **environment variable**.
+### Does my configuration file gets modified?
+
+No.
 
 ## Development
 
@@ -52,17 +83,17 @@ If you want to collaborate with the development of `config-webpack-plugin` you n
 
  1. Fork this repo.
  2. Clone your forked repo.
- 3. Create a _feature branch_ with: `git checkout -b feature/<name-of-feature>`.
+ 3. Create a _feature branch_ with: `git checkout develop; git checkout -b feature/<name-of-feature>`.
  4. Create a pull request **to be merged into `develop` branch**.
 
  > 💁 Please, do not submit PR to be merged into `master` branch.
 
 ### Roadmap
 
- - [ ] [Add test. Please!](https://github.com/rmariuzzo/config-webpack-plugin/issues/4)
- - [ ] [Add CI. Please!](https://github.com/rmariuzzo/config-webpack-plugin/issues/5)
- - [ ] [Support multiple file](https://github.com/rmariuzzo/config-webpack-plugin/issues/2) (`new ConfigPlugin(['./config.default.js', '.config.local.js'])`).
+ - [x] [Add test. Please!](https://github.com/rmariuzzo/config-webpack-plugin/issues/4)
+ - [x] [Add CI. Please!](https://github.com/rmariuzzo/config-webpack-plugin/issues/5)
+ - [x] [Support multiple file](https://github.com/rmariuzzo/config-webpack-plugin/issues/2) (`new ConfigPlugin(['./config.default.js', '.config.local.js'])`).
  - [ ] Support JSON file too ♥️, because they are prettiest for configuration.
  - [ ] [Add a static website using GitHub Pages](https://github.com/rmariuzzo/config-webpack-plugin/issues/3) (why not?).
 
- > 💁 Do you want to suggest a feature? [➕ Add a suggestion](https://github.com/rmariuzzo/config-webpack-plugin/issues/new).
+ > 💁 Do you want to suggest a feature? [Add a suggestion](https://github.com/rmariuzzo/config-webpack-plugin/issues/new).

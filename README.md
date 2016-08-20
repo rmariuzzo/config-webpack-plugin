@@ -24,10 +24,12 @@ module.exports = {
 }
 ```
 
-![How it works?](https://github.com/rmariuzzo/config-webpack-plugin/raw/master/img/how-it-works.png)
-
  1. The `config-webpack-plugin` will merge all specified configuration file contents from _right to left_, thus creating a _‘merged configuration’_.
+    ![Merging configuration files](https://github.com/rmariuzzo/config-webpack-plugin/raw/master/img/merging-config-files.png)
+
  2. If the _‘merged configuration’_ contains a `key` matching a current environment variable then the related `value` will be replaced by the environment variable's value.
+    ![Environment variables replacements](https://github.com/rmariuzzo/config-webpack-plugin/raw/master/img/env-vars-replacement.png)
+
  3. Finally, the `config-webpack-plugin` will intercept the _‘main configuration’_ file (the first specified) during webpack's module resolution and will replace its source with the _‘merged configuration’_.
 
 ## Usage

@@ -1,5 +1,4 @@
 import path from 'path';
-import utils from './utils';
 
 /**
  * The ConfigPlugin class.

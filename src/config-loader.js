@@ -2,6 +2,7 @@
  * The ConfigLoader function.
  *
  * @author Rubens Mariuzzo <rubens@mariuzzo.com>
+ * @license MIT https://opensource.org/licenses/MIT
  */
 module.exports = function () {
     // Get JSON string from query string.

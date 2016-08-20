@@ -31,7 +31,9 @@ gulp.task('build', ['lint:src'], () => {
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(uglify())
+        .pipe(uglify({
+            preserveComments: 'license'
+        }))
         .pipe(gulp.dest('lib/'));
 
 });

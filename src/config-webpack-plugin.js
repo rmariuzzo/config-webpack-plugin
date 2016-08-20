@@ -4,6 +4,7 @@ import path from 'path';
  * The ConfigPlugin class.
  *
  * @author Rubens Mariuzzo <rubens@mariuzzo.com>
+ * @license MIT https://opensource.org/licenses/MIT
  */
 class ConfigPlugin {
 

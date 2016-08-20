@@ -64,8 +64,11 @@ describe('config-webpack-plugin', () => {
     });
 
     it('should merge multiple configuration files', (done) => {
-        let plugin = new ConfigPlugin(['./test/fixture/config1.js', './test/fixture/config2.js']);
-        webpackRunner.run(plugin, (output) => {
+        let plugins = new ConfigPlugin([
+            './test/fixture/config1.js',
+            './test/fixture/config2.js'
+        ]);
+        webpackRunner.run(plugins, (output) => {
             expect(output).toEqual(mergedConfig);
             done();
         });

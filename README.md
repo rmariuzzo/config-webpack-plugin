@@ -10,6 +10,8 @@ npm install config-webpack-plugin --save-dev
 
 ### How it works?
 
+Let's say you have a base configuration file (`./config.js`) shared across your team. Now, you want for every developer to be able to override any configuration value without modifying the base configuration file. Therefore, every developer can create a _local_ configuration file (`./config.local.js`). And… `config-webpack-plugin` will do the rest for you.
+
 **`webpack.config.js`:**
 ```js
 const ConfigPlugin = require('config-webpack-plugin')
